@@ -1,0 +1,27 @@
+"use strict";
+exports.__esModule = true;
+var myString;
+var myNum;
+var myBool;
+var myVar;
+// let strArr: string[];
+// let numArr: number[];
+// let boolArr: boolean[];
+var strArr;
+var numArr;
+var boolArr;
+// Tuple is an array with defined number of elements
+var strNumTuple;
+myString = "Hello".slice(0, 3);
+myNum = 22;
+myBool = true;
+myVar = 5;
+strArr = ["Hello", "World"];
+numArr = [1, 2, 3];
+boolArr = [true, false, true];
+strNumTuple = ["Hello", 4];
+var myVoid = undefined;
+var myNull = undefined;
+var myUndefined = undefined;
+console.log(myVoid);
+// console.log(strArr);
