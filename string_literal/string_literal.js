@@ -1,6 +1,5 @@
-var x;
-x = "Hello";
-// x = "Hello World";
-// x = undefined;   // undefined and null pass
-// x = null;
-console.log(x);
+// let x: "Hello";
+function move(distance, direction) {
+    console.log("Moving " + distance + " Miles " + direction);
+}
+move(15, "NorthEast");
