@@ -1,4 +1,3 @@
-// export {};
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -12,50 +11,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-// class User {
-//   name: string;
-//   email: string;
-//   age: number;
-//   constructor(name: string, email: string, age: number) {
-//     this.name = name;
-//     this.email = email;
-//     this.age = age;
-//     console.log("User Created: " + this.name);
-//   }
-// }
-// let john = new User("John Doe", "jdoe@gmail.com", 34);
-// console.log(john.age);
-// class User {
-//     private name: string;
-//     private email: string;
-//     protected age: number;
-//     constructor(name: string, email: string, age: number) {
-//       this.name = name;
-//       this.email = email;
-//       this.age = age;
-//       console.log("User Created: " + this.name);
-//     }
-//   }
-//   let john = new User("John Doe", "jdoe@gmail.com", 34);
-//   console.log(john.age);
-// *Methods (private)
-// class User {
-//   name: string;
-//   email: string;
-//   age: number;
-//   constructor(name: string, email: string, age: number) {
-//     this.name = name;
-//     this.email = email;
-//     this.age = age;
-//     console.log("User Created: " + this.name);
-//   }
-//   private register() {
-//     console.log(this.name + " is now registered");
-//   }
-// }
-// let john = new User("John Doe", "jdoe@gmail.com", 34);
-// john.register();
-//* Inheritance
 var User = /** @class */ (function () {
     function User(name, email, age) {
         this.name = name;
