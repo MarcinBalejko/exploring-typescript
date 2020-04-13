@@ -2,7 +2,7 @@
 
 // x = "Hello";
 // x = "Hello World";
-// x = undefined;   // undefined and null pass
+// x = undefined;   // undefined and null pass without throwing any error
 // x = null;
 
 // let x: "Hello" | "Hello World" | "Hello World!";
