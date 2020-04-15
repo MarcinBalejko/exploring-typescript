@@ -1,4 +1,6 @@
-export class Triangle {
+import { ShapesInterface } from "./ShapesInterface";
+
+export class Triangle implements ShapesInterface {
   points: number;
 
   getPoints() {
@@ -10,7 +12,7 @@ export class Triangle {
   }
 }
 
-export class Square {
+export class Square implements ShapesInterface {
   points: number;
 
   getPoints() {
