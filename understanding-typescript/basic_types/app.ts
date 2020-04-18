@@ -72,18 +72,37 @@
 
 // {} = same as ... : object
 
-const person = {
+// const person = {
+//   name: "Maximilian",
+//   age: 30,
+//   hobbies: ["Sports", "Cooking"],
+// };
+
+// let favoriteActivities: string[];
+// favoriteActivities = ["Sports"];
+
+// console.log(person.name);
+
+// for (const hobby of person.hobbies) {
+//   console.log(hobby.toUpperCase());
+//   // console.log(hobby.map()); // !!! THROWS ERROR !!!
+// }
+
+// 5. TUPLES
+
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string];
+} = {
   name: "Maximilian",
   age: 30,
   hobbies: ["Sports", "Cooking"],
+  role: [2, "author"],
 };
 
-let favoriteActivities: string[];
-favoriteActivities = ["Sports"];
+// person.role.push("admin");  // push is an exception allowed in tuple
+// person.role[1] = 10;
 
-console.log(person.name);
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
-  // console.log(hobby.map()); // !!! ERROR !!!
-}
+person.role = [0, "admin", "user"]; // ERROR

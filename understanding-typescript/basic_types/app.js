@@ -51,16 +51,25 @@
 // const result = add(number1, number2, printResult, resultPhrase);
 //4. OBJECT TYPES & ARRAY TYPES
 // {} = same as ... : object
+// const person = {
+//   name: "Maximilian",
+//   age: 30,
+//   hobbies: ["Sports", "Cooking"],
+// };
+// let favoriteActivities: string[];
+// favoriteActivities = ["Sports"];
+// console.log(person.name);
+// for (const hobby of person.hobbies) {
+//   console.log(hobby.toUpperCase());
+//   // console.log(hobby.map()); // !!! THROWS ERROR !!!
+// }
+// 5. TUPLES
 var person = {
     name: "Maximilian",
     age: 30,
-    hobbies: ["Sports", "Cooking"]
+    hobbies: ["Sports", "Cooking"],
+    role: [2, "author"]
 };
-var favoriteActivities;
-favoriteActivities = ["Sports"];
-console.log(person.name);
-for (var _i = 0, _a = person.hobbies; _i < _a.length; _i++) {
-    var hobby = _a[_i];
-    console.log(hobby.toUpperCase());
-    // console.log(hobby.map()); // !!! ERROR !!!
-}
+// person.role.push("admin");  // push is an exception allowed in tuple
+// person.role[1] = 10;
+person.role = [0, "admin", "user"]; // ERROR
