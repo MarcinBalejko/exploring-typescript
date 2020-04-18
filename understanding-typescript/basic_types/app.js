@@ -1,5 +1,5 @@
 // 1.) UNION TYPES
-// function combine(input1: number | string, input2: number | string) {
+// function combine(input1: number | string, input2: number | string) {  // allows number or string here
 //   let result;
 //   if (typeof input1 === "number" && typeof input2 === "number") {
 //     result = input1 + input2;
@@ -8,16 +8,10 @@
 //   }
 //   return result;
 // }
-// const combinedAges = combine(30, 26);
-// console.log(combinedAges);
-// const combinedNames = combine("Max", "Anna");
-// console.log(combinedNames);
-// 2.) LITERAL TYPES
 function combine(input1, input2, resultConversion) {
     var result;
     if ((typeof input1 === "number" && typeof input2 === "number") ||
-        resultConversion === "as-number" // it has to be exactly what is specified in resultConversion above
-    ) {
+        resultConversion === "as-number") {
         result = +input1 + +input2;
     }
     else {
