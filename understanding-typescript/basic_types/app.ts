@@ -1,3 +1,5 @@
+// C O R E   T Y P E S
+
 // 1. NUMBER
 
 // console.log("Time to get started...");
@@ -90,19 +92,52 @@
 
 // 5. TUPLES
 
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: [number, string];
-} = {
+// const person: {
+//   name: string;
+//   age: number;
+//   hobbies: string[];
+//   role: [number, string];
+// } = {
+//   name: "Maximilian",
+//   age: 30,
+//   hobbies: ["Sports", "Cooking"],
+//   role: [2, "author"],
+// };
+
+// // person.role.push("admin");  // push is an exception allowed in tuple
+// // person.role[1] = 10;
+
+// person.role = [0, "admin", "user"]; // ERROR
+
+// 6. ENUM  (only existing in Typescript)
+
+// a.) non-enum example:
+// const ADMIN = 0
+// const READ_ONLY = 1
+// const AUTHOR = 2
+
+// const person = {
+//   name: "Maximilian",
+//   age: 30,
+//   hobbies: ["Sports", "Cooking"],
+//   role: ADMIN
+// };
+
+//b.) enum example
+enum Role {
+  ADMIN,
+  READ_ONLY,
+  AUTHOR,
+} // behind the scenes ADMIN = 0  READ_ONLY = 1 AUTHOR = 2
+// if we type '{ ADMIN = 5, ... ' then the next element will be 6
+
+const person = {
   name: "Maximilian",
   age: 30,
   hobbies: ["Sports", "Cooking"],
-  role: [2, "author"],
+  role: Role.ADMIN,
 };
 
-// person.role.push("admin");  // push is an exception allowed in tuple
-// person.role[1] = 10;
-
-person.role = [0, "admin", "user"]; // ERROR
+if (person.role === Role.AUTHOR) {
+  console.log("is author");
+}
