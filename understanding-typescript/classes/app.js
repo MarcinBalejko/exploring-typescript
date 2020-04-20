@@ -60,16 +60,65 @@ var __extends = (this && this.__extends) || (function () {
 //   }
 // }
 // 3.) INHERITANCE
+// class Department {
+//   private employees: string[] = [];
+//   constructor(private readonly id: string, public name: string) {}
+//   describe(this: Department) {
+//     console.log(`Department (${this.id}): ${this.name}`);
+//   }
+//   addEmployee(employee: string) {
+//     this.employees.push(employee);
+//   }
+//   printEmployeeInformation() {
+//     console.log(this.employees.length);
+//     console.log(this.employees);
+//   }
+// }
+// class ITDepartment extends Department {
+//   admins: string[];
+//   constructor(id: string, admins: string[]) {
+//     super(id, "IT"); // super always goes first
+//     this.admins = admins;
+//   }
+// }
+// class AccountingDepartment extends Department {
+//   constructor(id: string, private reports: string[]) {
+//     super(id, "Accounting");
+//   }
+//   addReport(text: string) {
+//     this.reports.push(text);
+//   }
+//   printReports() {
+//     console.log(this.reports);
+//   }
+// }
+// const it = new ITDepartment("d1", ["Max"]);
+// it.addEmployee("Max");
+// it.addEmployee("Manu");
+// it.describe();
+// it.name = "NEW NAME";
+// it.printEmployeeInformation();
+// console.log(it);
+// const accounting = new AccountingDepartment("d2", []);
+// accounting.addReport("Something went wrong...");
+// accounting.printReports();
+// 4.) GETTERS & SETTERS
 var Department = /** @class */ (function () {
     function Department(id, name) {
         this.id = id;
         this.name = name;
+        // private readonly id: string;
+        // private name: string;
         this.employees = [];
+        // this.id = id;
+        // this.name = n;
     }
     Department.prototype.describe = function () {
         console.log("Department (" + this.id + "): " + this.name);
     };
     Department.prototype.addEmployee = function (employee) {
+        // validation etc
+        // this.id = 'd2';
         this.employees.push(employee);
     };
     Department.prototype.printEmployeeInformation = function () {
@@ -92,10 +141,34 @@ var AccountingDepartment = /** @class */ (function (_super) {
     function AccountingDepartment(id, reports) {
         var _this = _super.call(this, id, "Accounting") || this;
         _this.reports = reports;
+        _this.lastReport = reports[0];
         return _this;
     }
+    Object.defineProperty(AccountingDepartment.prototype, "mostRecentReport", {
+        get: function () {
+            if (this.lastReport) {
+                return this.lastReport;
+            }
+            throw new Error("No report found.");
+        },
+        set: function (value) {
+            if (!value) {
+                throw new Error("Please pass in a valid value!");
+            }
+            this.addReport(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AccountingDepartment.prototype.addEmployee = function (name) {
+        if (name === "Max") {
+            return;
+        }
+        this.employees.push(name);
+    };
     AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
+        this.lastReport = text;
     };
     AccountingDepartment.prototype.printReports = function () {
         console.log(this.reports);
@@ -105,10 +178,18 @@ var AccountingDepartment = /** @class */ (function (_super) {
 var it = new ITDepartment("d1", ["Max"]);
 it.addEmployee("Max");
 it.addEmployee("Manu");
+// it.employees[2] = 'Anna';
 it.describe();
 it.name = "NEW NAME";
 it.printEmployeeInformation();
 console.log(it);
 var accounting = new AccountingDepartment("d2", []);
+accounting.mostRecentReport = "Year End Report";
 accounting.addReport("Something went wrong...");
+console.log(accounting.mostRecentReport);
+accounting.addEmployee("Max");
+accounting.addEmployee("Manu");
 accounting.printReports();
+accounting.printEmployeeInformation();
+// const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
+// accountingCopy.describe();
