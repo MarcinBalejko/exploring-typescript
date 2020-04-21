@@ -103,6 +103,85 @@ var __extends = (this && this.__extends) || (function () {
 // accounting.addReport("Something went wrong...");
 // accounting.printReports();
 // 4.) GETTERS & SETTERS
+// class Department {
+//   // private readonly id: string;
+//   // private name: string;
+//   protected employees: string[] = [];
+//   constructor(private readonly id: string, public name: string) {
+//     // this.id = id;
+//     // this.name = n;
+//   }
+//   describe(this: Department) {
+//     console.log(`Department (${this.id}): ${this.name}`);
+//   }
+//   addEmployee(employee: string) {
+//     // validation etc
+//     // this.id = 'd2';
+//     this.employees.push(employee);
+//   }
+//   printEmployeeInformation() {
+//     console.log(this.employees.length);
+//     console.log(this.employees);
+//   }
+// }
+// class ITDepartment extends Department {
+//   admins: string[];
+//   constructor(id: string, admins: string[]) {
+//     super(id, "IT");
+//     this.admins = admins;
+//   }
+// }
+// class AccountingDepartment extends Department {
+//   private lastReport: string;
+//   get mostRecentReport() {
+//     if (this.lastReport) {
+//       return this.lastReport;
+//     }
+//     throw new Error("No report found.");
+//   }
+//   set mostRecentReport(value: string) {
+//     if (!value) {
+//       throw new Error("Please pass in a valid value!");
+//     }
+//     this.addReport(value);
+//   }
+//   constructor(id: string, private reports: string[]) {
+//     super(id, "Accounting");
+//     this.lastReport = reports[0];
+//   }
+//   addEmployee(name: string) {
+//     if (name === "Max") {
+//       return;
+//     }
+//     this.employees.push(name);
+//   }
+//   addReport(text: string) {
+//     this.reports.push(text);
+//     this.lastReport = text;
+//   }
+//   printReports() {
+//     console.log(this.reports);
+//   }
+// }
+// const it = new ITDepartment("d1", ["Max"]);
+// it.addEmployee("Max");
+// it.addEmployee("Manu");
+// // it.employees[2] = 'Anna';
+// it.describe();
+// it.name = "NEW NAME";
+// it.printEmployeeInformation();
+// console.log(it);
+// const accounting = new AccountingDepartment("d2", []);
+// accounting.mostRecentReport = "Year End Report";
+// accounting.addReport("Something went wrong...");
+// console.log(accounting.mostRecentReport);
+// accounting.addEmployee("Max");
+// accounting.addEmployee("Manu");
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+// // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
+// // accountingCopy.describe();
+// 5.)
 var Department = /** @class */ (function () {
     function Department(id, name) {
         this.id = id;
@@ -112,9 +191,10 @@ var Department = /** @class */ (function () {
         this.employees = [];
         // this.id = id;
         // this.name = n;
+        // console.log(Department.fiscalYear);
     }
-    Department.prototype.describe = function () {
-        console.log("Department (" + this.id + "): " + this.name);
+    Department.createEmployee = function (name) {
+        return { name: name };
     };
     Department.prototype.addEmployee = function (employee) {
         // validation etc
@@ -125,6 +205,7 @@ var Department = /** @class */ (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.fiscalYear = 2020;
     return Department;
 }());
 var ITDepartment = /** @class */ (function (_super) {
@@ -134,6 +215,9 @@ var ITDepartment = /** @class */ (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log("IT Department - ID: " + this.id);
+    };
     return ITDepartment;
 }(Department));
 var AccountingDepartment = /** @class */ (function (_super) {
@@ -160,6 +244,9 @@ var AccountingDepartment = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    AccountingDepartment.prototype.describe = function () {
+        console.log("Accounting Department - ID: " + this.id);
+    };
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === "Max") {
             return;
@@ -175,6 +262,8 @@ var AccountingDepartment = /** @class */ (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
+var employee1 = Department.createEmployee("Max");
+console.log(employee1, Department.fiscalYear);
 var it = new ITDepartment("d1", ["Max"]);
 it.addEmployee("Max");
 it.addEmployee("Manu");
@@ -189,7 +278,8 @@ accounting.addReport("Something went wrong...");
 console.log(accounting.mostRecentReport);
 accounting.addEmployee("Max");
 accounting.addEmployee("Manu");
-accounting.printReports();
-accounting.printEmployeeInformation();
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+accounting.describe();
 // const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
 // accountingCopy.describe();
