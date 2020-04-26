@@ -43,27 +43,56 @@
 
 // 3.) MORE USEFUL DECORATOR
 
-function WithTemplate(template: string, hookId: string) {
-  return function (constructor: any) {
-    const hookEl = document.getElementById(hookId);
-    const p = new constructor();
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector("h1")!.textContent = p.name;
-    }
+// function WithTemplate(template: string, hookId: string) {
+//   return function (constructor: any) {
+//     const hookEl = document.getElementById(hookId);
+//     const p = new constructor();
+//     if (hookEl) {
+//       hookEl.innerHTML = template;
+//       hookEl.querySelector("h1")!.textContent = p.name;
+//     }
+//   };
+// }
+
+// // @Logger('LOGGING - PERSON')
+// @WithTemplate("<h1>My Person Object</h1>", "app")
+// class Person {
+//   name = "Max";
+
+//   constructor() {
+//     console.log("Creating person object...");
+//   }
+// }
+
+// const pers = new Person();
+
+// console.log(pers);
+
+// 4.) AUTOBIND DECORATOR
+
+function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
+  const originalMethod = descriptor.value;
+  const adjDescriptor: PropertyDescriptor = {
+    configurable: true,
+    enumerable: false,
+    get() {
+      const boundFn = originalMethod.bind(this); // here 'this' will always refer to the object that we defined 'get' on
+      return boundFn;
+    },
   };
+  return adjDescriptor; // this will overwrite the old descriptor
 }
 
-// @Logger('LOGGING - PERSON')
-@WithTemplate("<h1>My Person Object</h1>", "app")
-class Person {
-  name = "Max";
+class Printer {
+  message = "This works!";
 
-  constructor() {
-    console.log("Creating person object...");
+  @Autobind
+  showMessage() {
+    console.log(this.message);
   }
 }
 
-const pers = new Person();
+const p = new Printer();
 
-console.log(pers);
+const button = document.querySelector("button")!;
+button.addEventListener("click", p.showMessage);
